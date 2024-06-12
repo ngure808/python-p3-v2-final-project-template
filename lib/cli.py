@@ -14,7 +14,8 @@ def main():
         print("5. Assign article to an magazine")
         print("6. List of Magazines")
         print("7. List of Authors")
-        print("8. Exit")
+        print("8. List of Articles")
+        print("9. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -60,8 +61,18 @@ def main():
                     print(f"{author[0]:<15}{author[1]:<20}")
             else:
                 print("No authors found.")
-
+        
         elif choice == "8":
+            articles = db.list_articles()
+            if articles:
+                print(f"{'Article ID':<15}{'Article Title':<20}{'Category':<20}{'Magazine ID':<15}{'Magazine Title':<25}")
+                print("-" * 100)
+                for article in articles:
+                    print(f"{article[0]:<15}{article[1]:<20}{article[2]:<20}{article[3]:<15}{article[4]:<25}")
+                else:
+                    print("No articles found.")
+
+        elif choice == "9":
             exit_program()
             break
 
