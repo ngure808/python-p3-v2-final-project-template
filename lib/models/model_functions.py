@@ -52,3 +52,13 @@ class EditorDB:
             print(f'Article of id: {article_id} has been added to Magazine of id: {magazines_id}')
         else:
             print(f'Magazine of id: {magazines_id} does not exist')
+
+    def list_magazines(self):
+        sql = '''
+            SELECT magazines.id, magazines.main_title, magazines.genre, authors.id, authors.name
+            FROM magazines
+            LEFT JOIN authors
+            ON magazines.authors_id = authors.id
+        '''
+        self.CURSOR.execute(sql)
+        return self.CURSOR.fetchall()
