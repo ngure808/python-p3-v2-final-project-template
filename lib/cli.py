@@ -12,7 +12,8 @@ def main():
         print("3. Add Article")
         print("4. Assign magazine to an author")
         print("5. Assign article to an magazine")
-        print("6. Exit")
+        print("6. List of Magazines")
+        print("7. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -40,6 +41,16 @@ def main():
             db.assign_article_to_magazine(article_id,magazines_id) 
 
         elif choice == "6":
+            magazines = db.list_magazines()
+            if magazines:
+                print(f"{'Magazine ID':<15}{'Main Title':<20}{'Genre':<15}{'Author ID':<15}{'Author Name':<20}")
+                print("-" * 85)
+                for magazine in magazines:
+                    print(f"{magazine[0]:<15}{magazine[1]:<20}{magazine[2]:<15}{magazine[3] if magazine[3] is not None else 'N/A':<15}{magazine[4] if magazine[4] is not None else 'N/A':<20}")
+            else:
+                print("No magazines found.") 
+
+        elif choice == "7":
             exit_program()
             break
 
