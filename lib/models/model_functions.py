@@ -76,3 +76,29 @@ class EditorDB:
         '''
         self.CURSOR.execute(sql)
         return self.CURSOR.fetchall()
+    
+    def find_magazine_by_id(self, magazines_id):
+        if self.magazine_exists(magazines_id):
+            self.CURSOR.execute('SELECT * FROM magazines WHERE id = ?', (magazines_id,))
+            row = self.CURSOR.fetchone()
+            if row:
+               return row
+        else:
+            print("Magazine not found")
+    def find_author_by_id(self, authors_id):
+        if self.author_exists(authors_id):
+            self.CURSOR.execute('SELECT * FROM authors WHERE id = ?', (authors_id,))
+            row = self.CURSOR.fetchone()
+            if row:
+                return row
+        else:
+            print("Author not found")
+
+    def find_article_by_id(self, article_id):
+        if self.article_exists(article_id):
+            self.CURSOR.execute('SELECT * FROM articles WHERE id = ?', (article_id,))
+            row = self.CURSOR.fetchone()
+            if row:
+                return row
+        else:
+            print("Article not found")
