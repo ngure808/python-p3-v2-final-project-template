@@ -66,3 +66,13 @@ class EditorDB:
     def list_authors(self):
         self.CURSOR.execute('SELECT * FROM authors')
         return self.CURSOR.fetchall()
+    
+    def list_articles(self):
+        sql = '''
+            SELECT articles.id, articles.title, articles.category, magazines.id, magazines.main_title
+            FROM articles
+            LEFT JOIN magazines
+            ON articles.magazines_id = magazines.id
+        '''
+        self.CURSOR.execute(sql)
+        return self.CURSOR.fetchall()
