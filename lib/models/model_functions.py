@@ -16,14 +16,17 @@ class EditorDB:
     def add_magazine(self, main_title, genre):
         self.CURSOR.execute('INSERT INTO magazines (main_title, genre) VALUES (?, ?)', (main_title, genre))
         self.CONN.commit()
+        print("Magazine successfully added")
 
     def add_author(self, name):
         self.CURSOR.execute('INSERT INTO authors (name) VALUES (?)', (name,))
         self.CONN.commit()
+        print("Author successfully added")
     
     def add_article(self, title, category):
         self.CURSOR.execute('INSERT INTO articles (title, category) VALUES (?, ?)', (title, category))
         self.CONN.commit()
+        print("Article successfully added")
     
     def author_exists(self,author_id):
         self.CURSOR.execute('SELECT * FROM authors WHERE id = ?', (author_id,))
