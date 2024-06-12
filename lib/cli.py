@@ -15,7 +15,10 @@ def main():
         print("6. List of Magazines")
         print("7. List of Authors")
         print("8. List of Articles")
-        print("9. Exit")
+        print("9. Find Magazine by ID")
+        print("10. Find Author by ID")
+        print("11. Find Article by ID")
+        print("12. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -71,8 +74,32 @@ def main():
                     print(f"{article[0]:<15}{article[1]:<20}{article[2]:<20}{article[3]:<15}{article[4]:<25}")
                 else:
                     print("No articles found.")
-
+        
         elif choice == "9":
+            magazine_id = int(input("Enter magazine ID to find: "))
+            magazine = db.find_magazine_by_id(magazine_id)
+            if magazine:
+                print(f"{'Magazine ID':<15}{'Title':<25}{'Genre':<20}")
+                print("-" * 100)
+                print(f"{magazine[0]:<15}{magazine[1]:<25}{magazine[2]:<20}")
+
+        elif choice == "10":
+            author_id = int(input("Enter author ID to find: "))
+            author = db.find_author_by_id(author_id)
+            if author:
+                print(f"{'Author ID':<15}{'Name':<25}")
+                print("-" * 40)
+                print(f"{author[0]:<15}{author[1]:<25}")
+
+        elif choice == "11":
+            article_id = int(input("Enter article ID to find: "))
+            article = db.find_article_by_id(article_id)
+            if article:
+                print(f"{'Article ID':<15}{'Title':<20}{'Category':<20}")
+                print("-" * 55)
+                print(f"{article[0]:<15}{article[1]:<20}{article[2]:<20}")
+
+        elif choice == "12":
             exit_program()
             break
 
