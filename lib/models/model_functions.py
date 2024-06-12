@@ -130,3 +130,27 @@ class EditorDB:
             return self.CURSOR.fetchall()
         else:
             print("Author not found")
+    
+    def delete_magazine_by_id(self, magazines_id):
+        if self.magazine_exists(magazines_id):
+            self.CURSOR.execute('DELETE FROM magazines WHERE id = ?', (magazines_id,))
+            self.CONN.commit()
+            print(f"Magazine with ID {magazines_id} has been deleted.")
+        else:
+            print("Magazine not found.")
+
+    def delete_article_by_id(self, article_id):
+        if self.article_exists(article_id):
+            self.CURSOR.execute('DELETE FROM articles WHERE id = ?', (article_id,))
+            self.CONN.commit()
+            print(f"Article with ID {article_id} has been deleted.")
+        else:
+            print("Article not found.")
+
+    def delete_author_by_id(self, authors_id):
+        if self.author_exists(authors_id):
+            self.CURSOR.execute('DELETE FROM authors WHERE id = ?', (authors_id,))
+            self.CONN.commit()
+            print(f"Author with ID {authors_id} has been deleted.")
+        else:
+            print("Author not found.")
