@@ -44,3 +44,11 @@ class EditorDB:
            print(f'The Author of Magazine id: {magazines_id} has id: {authors_id}')
         else:
            print(f'Author of id: {authors_id} does not exist')
+
+    def assign_article_to_magazine(self, magazines_id, article_id):
+        if self.magazine_exists(magazines_id):
+            self.CURSOR.execute('UPDATE articles SET magazines_id = ? WHERE id = ?', (magazines_id, article_id))
+            self.CONN.commit()
+            print(f'Article of id: {article_id} has been added to Magazine of id: {magazines_id}')
+        else:
+            print(f'Magazine of id: {magazines_id} does not exist')
