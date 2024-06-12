@@ -24,3 +24,15 @@ class EditorDB:
     def add_article(self, title, category):
         self.CURSOR.execute('INSERT INTO articles (title, category) VALUES (?, ?)', (title, category))
         self.CONN.commit()
+    
+    def author_exists(self,author_id):
+        self.CURSOR.execute('SELECT * FROM authors WHERE id = ?', (author_id,))
+        return self.CURSOR.fetchone() is not None
+
+    def magazine_exists(self,magazine_id):
+        self.CURSOR.execute('SELECT * FROM magazines WHERE id = ?', (magazine_id,))
+        return self.CURSOR.fetchone() is not None
+
+    def article_exists(self,article_id):
+        self.CURSOR.execute('SELECT * FROM articles WHERE id = ?', (article_id,))
+        return self.CURSOR.fetchone() is not None
