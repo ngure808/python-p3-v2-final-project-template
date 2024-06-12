@@ -20,7 +20,10 @@ def main():
         print("11. Find Article by ID")
         print("12. Magazine's articles")
         print("13. Author's magazines")
-        print("14. Exit")
+        print("14. Delete Author")
+        print("15. Delete Magazine")
+        print("16. Delete Article")
+        print("17. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -126,8 +129,20 @@ def main():
                 print("-" * 60)
                 for magazine in magazines:
                     print(f"{magazine[0]:<15}{magazine[1]:<25}{magazine[2]:<20}") 
-
+        
         elif choice == "14":
+            magazines_id = int(input("Enter magazine ID to delete: "))
+            db.delete_magazine_by_id(magazines_id)
+
+        elif choice == "15":
+            authors_id = int(input("Enter author ID to delete: "))
+            db.delete_author_by_id(authors_id)
+
+        elif choice == "16":
+            article_id = int(input("Enter article ID to delete: "))
+            db.delete_article_by_id(article_id)
+
+        elif choice == "17":
             exit_program()
             break
 
