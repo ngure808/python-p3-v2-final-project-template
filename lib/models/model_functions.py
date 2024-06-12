@@ -62,3 +62,7 @@ class EditorDB:
         '''
         self.CURSOR.execute(sql)
         return self.CURSOR.fetchall()
+    
+    def list_authors(self):
+        self.CURSOR.execute('SELECT * FROM authors')
+        return self.CURSOR.fetchall()
