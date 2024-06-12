@@ -10,8 +10,9 @@ def main():
         print("\n1. Add Magazine")
         print("2. Add Author")
         print("3. Add Article")
-        print("4. Assign author to an magazine")
-        print("5. Exit")
+        print("4. Assign magazine to an author")
+        print("5. Assign article to an magazine")
+        print("6. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -32,8 +33,13 @@ def main():
             magazines_id = int(input("Enter Magazine's ID: "))
             authors_id = int(input("Enter Author's ID: "))
             db.assign_magazine_to_author(magazines_id,authors_id)
-
+        
         elif choice == "5":
+            article_id = int(input("Enter Article's ID: "))
+            magazines_id = int(input("Enter Magazine's ID: "))
+            db.assign_article_to_magazine(article_id,magazines_id) 
+
+        elif choice == "6":
             exit_program()
             break
 
