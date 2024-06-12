@@ -36,3 +36,11 @@ class EditorDB:
     def article_exists(self,article_id):
         self.CURSOR.execute('SELECT * FROM articles WHERE id = ?', (article_id,))
         return self.CURSOR.fetchone() is not None
+    
+    def assign_magazine_to_author(self, magazines_id, authors_id):
+        if self.author_exists(authors_id):
+           self.CURSOR.execute('UPDATE magazines SET authors_id = ? WHERE id = ?', (authors_id, magazines_id))
+           self.CONN.commit()
+           print(f'The Author of Magazine id: {magazines_id} has id: {authors_id}')
+        else:
+           print(f'Author of id: {authors_id} does not exist')
