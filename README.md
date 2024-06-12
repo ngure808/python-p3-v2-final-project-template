@@ -13,7 +13,7 @@ python lib/models/create_tables.py
 ### Usage
 To run the CLI application, execute:
 ```bash
-python lib/cli
+python lib/cli.py
 ```
 You will be presented with a menu of options:
 ```markdown
