@@ -102,3 +102,31 @@ class EditorDB:
                 return row
         else:
             print("Article not found")
+    
+    def list_of_magazine_articles(self, magazines_id):
+        if self.magazine_exists(magazines_id):
+            sql = '''
+                SELECT articles.id, articles.title, articles.category, magazines.id, magazines.main_title
+                FROM articles
+                INNER JOIN magazines
+                ON articles.magazines_id = magazines.id
+                WHERE magazines.id = ?
+            '''
+            self.CURSOR.execute(sql, (magazines_id,))
+            return self.CURSOR.fetchall()
+        else:
+            print("Magazine not found")
+
+    def list_of_author_magazines(self, authors_id):
+        if self.author_exists(authors_id):
+            sql = '''
+                SELECT magazines.main_title, magazines.genre, authors.id, authors.name
+                FROM magazines
+                INNER JOIN authors
+                ON magazines.authors_id = authors.id
+                WHERE authors.id = ?
+            '''
+            self.CURSOR.execute(sql, (authors_id,))
+            return self.CURSOR.fetchall()
+        else:
+            print("Author not found")
