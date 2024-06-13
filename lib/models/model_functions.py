@@ -40,6 +40,15 @@ class EditorDB:
         self.CURSOR.execute('SELECT * FROM articles WHERE id = ?', (article_id,))
         return self.CURSOR.fetchone() is not None
     
+    def update_magazine_main_title(self,old_main_title,new_main_title):
+        self.CURSOR.execute("UPDATE magazines SET main_title=? WHERE main_title=?",
+                            (new_main_title,old_main_title))
+        self.CONN.commit()
+        if self.CURSOR.rowcount == 0:
+          print("Update failed: No magazine found with the provided main_title.")
+        else:
+         print(f"{old_main_title}'s name has been updated to {new_main_title}.")
+    
     def assign_magazine_to_author(self, magazines_id, authors_id):
         if self.author_exists(authors_id):
            self.CURSOR.execute('UPDATE magazines SET authors_id = ? WHERE id = ?', (authors_id, magazines_id))

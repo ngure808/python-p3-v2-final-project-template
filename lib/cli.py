@@ -20,10 +20,11 @@ def main():
         print("11. Find Article by ID")
         print("12. Magazine's articles")
         print("13. Author's magazines")
-        print("14. Delete Author")
+        print("14. Updating Magazines Main_title")
         print("15. Delete Magazine")
-        print("16. Delete Article")
-        print("17. Exit")
+        print("16. Delete Author")
+        print("17. Delete Article")
+        print("18. Exit")
         choice = input("Enter Choice: ")
 
         if choice == "1":
@@ -77,8 +78,8 @@ def main():
                 print("-" * 100)
                 for article in articles:
                     print(f"{article[0]:<15}{article[1]:<20}{article[2]:<20}{article[3]:<15}{article[4]:<25}")
-                else:
-                    print("No articles found.")
+            else:
+                print("No articles found.")
         
         elif choice == "9":
             magazine_id = int(input("Enter magazine ID to find: "))
@@ -104,14 +105,6 @@ def main():
                 print("-" * 55)
                 print(f"{article[0]:<15}{article[1]:<20}{article[2]:<20}")
 
-        elif choice == "11":
-            article_id = int(input("Enter article ID to find: "))
-            article = db.find_article_by_id(article_id)
-            if article:
-                print(f"{'Article ID':<15}{'Title':<20}{'Category':<25}")
-                print("-" * 60)
-                print(f"")
-
         elif choice == "12":
             magazine_id = int(input("Enter magazine ID to list articles: "))
             articles = db.list_of_magazine_articles(magazine_id)
@@ -128,21 +121,26 @@ def main():
                 print(f"{'Magazine ID':<15}{'Title':<25}{'Genre':<20}")
                 print("-" * 60)
                 for magazine in magazines:
-                    print(f"{magazine[0]:<15}{magazine[1]:<25}{magazine[2]:<20}") 
+                    print(f"{magazine[0]:<15}{magazine[1]:<25}{magazine[2]:<20}")
+
+        elif choice=="14":
+            old_main_title = input("Enter the Magazine's Main Title: ")
+            new_main_title = input("Enter the new Magazine Main Title for the magazine: ")
+            db.update_magazine_main_title(old_main_title, new_main_title) 
         
-        elif choice == "14":
+        elif choice == "15":
             magazines_id = int(input("Enter magazine ID to delete: "))
             db.delete_magazine_by_id(magazines_id)
 
-        elif choice == "15":
+        elif choice == "16":
             authors_id = int(input("Enter author ID to delete: "))
             db.delete_author_by_id(authors_id)
 
-        elif choice == "16":
+        elif choice == "17":
             article_id = int(input("Enter article ID to delete: "))
             db.delete_article_by_id(article_id)
 
-        elif choice == "17":
+        elif choice == "18":
             exit_program()
             break
 
